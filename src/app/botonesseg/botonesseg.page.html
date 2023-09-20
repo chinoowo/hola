@@ -1,0 +1,31 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Seleccione una opción</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-segment [(ngModel)]="binding">
+  <ion-segment-button value="explaboral">
+    <ion-label>Experiencia Laboral</ion-label>
+  </ion-segment-button>
+  <ion-segment-button value="misdatos">
+    <ion-label>Mis datos</ion-label>
+  </ion-segment-button>
+  <ion-segment-button value="certi">
+    <ion-label>Certificaciones</ion-label>
+  </ion-segment-button>
+</ion-segment>
+
+<ion-content>
+  <div [ngSwitch]="binding">
+    <ion-list *ngSwitchCase="'explaboral'">
+      <ion-item>Aquí va la Experiencia Laboral</ion-item>
+    </ion-list>
+    <ion-list *ngSwitchCase="'misdatos'">
+      <ion-item>Aquí van los datos personales</ion-item>
+    </ion-list>
+    <ion-list *ngSwitchCase="'certi'">
+      <ion-item>Aquí van las Certificaciones</ion-item>
+    </ion-list>
+  </div>
+</ion-content>
