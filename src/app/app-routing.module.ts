@@ -1,5 +1,11 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { ExperienciaLaboralComponent } from './experiencia-laboral/experiencia-laboral.component';
+import { MisDatosComponent } from './mis-datos/mis-datos.component';
+import { CertificacionesComponent } from './certificaciones/certificaciones.component';
+import { E404Guard } from './guards/e404.guard'; // Importa el guard
+import { E404Page } from './e404/e404.page';
+
 
 const routes: Routes = [
   {
@@ -12,24 +18,16 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'home',
-    redirectTo: 'home',
-    pathMatch: 'full'
+    path: 'experiencia-laboral',
+    component: ExperienciaLaboralComponent
   },
   {
-    path: 'e404',
-    redirectTo: 'e404',
-    pathMatch: 'full'
+    path: 'mis-datos',
+    component: MisDatosComponent
   },
   {
-    path: 'botonesseg',
-    redirectTo: 'botonesseg',
-    pathMatch: 'full'
-  },
-  {
-    path: '**',
-    redirectTo: 'e404',
-    pathMatch: 'full'
+    path: 'certificaciones',
+    component: CertificacionesComponent
   },
   {
     path: 'e404',
@@ -37,14 +35,20 @@ const routes: Routes = [
   },
   {
     path: 'botonesseg',
-    loadChildren: () => import('./botonesseg/botonesseg.module').then( m => m.BotonessegPageModule)
+    loadChildren: () => import('./botonesseg/botonesseg.module').then(m => m.BotonessegPageModule)
   },
+  {
+    path: '**',
+    redirectTo: 'e404',
+    pathMatch: 'full'
+  }
 ];
 
 @NgModule({
   imports: [
     RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
   ],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [E404Guard], // Agrega el guard a los providers
 })
 export class AppRoutingModule { }
